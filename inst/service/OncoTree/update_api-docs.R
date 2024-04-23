@@ -1,0 +1,22 @@
+# setwd("~/gh/OncoTree")
+file_loc <- "inst/service/OncoTree/api.json"
+
+download.file(
+    url = "https://OncoTree.mskcc.org/api-docs",
+    destfile = file_loc
+)
+
+md5 <- digest::digest(file_loc, file = TRUE)
+nexuslines <- readLines("R/OncoTree.R")
+mdline <- grep("\"[0-9a-f]{32}\"", nexuslines, value = TRUE)
+oldmd5 <- unlist(strsplit(mdline, "\""))[[2]]
+updatedlines <- gsub("\"[0-9a-f]{32}\"", dQuote(md5, FALSE), cbiolines)
+
+## success -- updated API files and MD5
+if (!identical(oldmd5, md5)) {
+    writeLines(updatedlines, con = file("R/OncoTree.R"))
+    quit(status = 0)
+} else {
+## failure -- API the same
+    quit(status = 1)
+}

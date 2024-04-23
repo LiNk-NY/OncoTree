@@ -1,0 +1,18 @@
+Package: OncoTree
+Title: Expose the OncoTree API for R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Marcel", "Ramos", , "marcel.ramos@sph.cuny.edu", c("aut", "cre"),
+        comment = c(ORCID = "0000-0002-3242-0582"))
+Description: Expose the OncoTree API for R. OncoTree is a standardized ontology
+  of cancer terms that is used to annotate cancer data. This package provides a
+  set of functions to query the OncoTree API and retrieve information about
+  cancer types, subtypes, and their relationships.
+License: Artistic-2.0
+Depends: AnVIL
+Imports:
+  dplyr,
+  methods
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
